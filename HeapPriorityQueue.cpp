@@ -18,8 +18,34 @@ void heapQueue::heapifyUp(int i) {
     }
 }
 
+void heapQueue::heapifyDown(int n, int i) {
+    int largest = i;
+
+    int left = 2 * i + 1;
+
+    int right = 2 * i + 2;
+
+    if(left < n && arr[largest].second < arr[left].second) {
+        largest = left;
+    }
+
+    if(right < n && arr[largest].second < arr[right].second) {
+        largest = right;
+    }
+
+    if(largest != i) {
+        std::swap(arr[i], arr[largest]);
+
+        heapifyDown(n, largest);
+    }
+}
+
 void heapQueue::insert(double e, double p) {
     std::pair<double, double> newElem = {e, p};
     arr.push_back(newElem);
     heapifyUp(arr.size() - 1);
+}
+
+std::pair<double, double> heapQueue::extract_max() {
+    std::pair<double, double> firstElem = arr[0];
 }
