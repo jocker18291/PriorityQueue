@@ -1,5 +1,8 @@
 #include "HeapPriorityQueue.hpp"
 #include <iostream>
+#include <vector>
+#include <random>
+#include <chrono>
 
 void heapMenu() {
     heapQueue hq;
