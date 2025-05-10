@@ -11,7 +11,9 @@ void heapMenu() {
     std::cout << "3. Find the element of the biggest priority\n";
     std::cout << "4. Modify the priority of given element\n";
     std::cout << "5. Return the size of the heap\n";
+    std::cout << "6. Exit\n";
     std::cin >> choice;
+    do {
     switch(choice) {
         case 1:
             std::cout << "Enter an element and a priority: ";
@@ -32,13 +34,17 @@ void heapMenu() {
         case 5:
             std::cout << "The size of the heap: " << hq.return_size() << std::endl;
             break;
+        case 6:
+            break;
         default:
+        std::cout << "Unknown choice, try again\n";
             break;
     }
+} while(choice != 6);
 }
 
 int main() {
     heapMenu();
-    
+
     return 0;
 }
