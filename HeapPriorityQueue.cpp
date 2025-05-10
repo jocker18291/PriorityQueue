@@ -6,25 +6,16 @@ heapQueue::heapQueue(std::vector<std::pair<double, double>> array) {
     arr = array;
 };
 
-void heapQueue::heapify(std::vector<std::pair<double, double>>& arr, int n, int i) {
+void heapQueue::heapifyUp(std::vector<std::pair<double, double>>& arr, int i) {
+    if(i > 0) {
+        int parent = (i - 1) / 2;
 
-    int largest = i;
+        if(arr[parent].second < arr[i].second) {
+        std::swap(arr[i], arr[parent]);
 
-    int left = 2 * i + 1;
-
-    int right = 2 * i + 2;
-
-    if(left < n && arr[largest].second < arr[left].second) {
-        largest = left;
+        heapifyUp(arr, parent);
+        }
     }
-
-    if(right < n && arr[largest].second < arr[right].second) {
-        largest = right;
-    }
-
-    if(largest != i) {
-        std::swap(arr[i], arr[largest]);
-
-        heapify(arr, n, largest);
-    }
+    
 }
+
