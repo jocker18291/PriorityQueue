@@ -11,6 +11,7 @@ public:
     heapQueue(std::vector<std::pair<double, double>> arr);
     void heapifyUp( int i);
     void insert(double e, double p);
+    std::pair<double, double> extract_max();
 };
 
 #endif
