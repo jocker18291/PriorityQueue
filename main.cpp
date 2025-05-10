@@ -22,7 +22,7 @@ void heapMenu() {
             std::cout << "The biggest element: " << hq.extract_max().first << " with priority of " << hq.extract_max().second << " was deleted\n";
             break;
         case 3:
-            std::cout << "Element with the biggest priority: " << hq.find_max() << std::endl;
+            std::cout << "Element with the biggest priority: " << hq.find_max().first << " with priority of " << hq.find_max().second << std::endl;
             break;
         case 4:
             std::cout << "Enter the element and a priority to change: ";
