@@ -8,7 +8,7 @@ private:
     double priority;
     std::vector<std::pair<double, double>> arr;
 public:
-    heapQueue(std::vector<std::pair<double, double>> arr);
+    heapQueue();
     void heapifyUp(int i);
     void heapifyDown(int n, int i);
     void insert(double e, double p);
