@@ -75,3 +75,7 @@ void heapQueue::modify_key(double e, double p) {
     }
     
 }
+
+int heapQueue::return_size() const {
+    return arr.size();
+}
