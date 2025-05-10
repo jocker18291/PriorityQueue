@@ -9,7 +9,7 @@ private:
     std::vector<std::pair<double, double>> arr;
 public:
     heapQueue(std::vector<std::pair<double, double>> arr);
-    void heapify(std::vector<double>& arr, int n, int i);
+    void heapify(std::vector<std::pair<double, double>>& arr, int n, int i);
 };
 
 #endif
