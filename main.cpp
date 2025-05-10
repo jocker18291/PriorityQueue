@@ -6,13 +6,15 @@ void heapMenu() {
     double e = 0.0, p = 0.0;
     int choice = 0;
     do {
-        std::cout << " --- Heap Priority Queue ---\n\n";
+        std::cout << "\n --- Heap Priority Queue ---\n\n";
         std::cout << "1. Insert an element (e, q)\n";
         std::cout << "2. Extract the biggest element\n";
         std::cout << "3. Find the element of the biggest priority\n";
         std::cout << "4. Modify the priority of given element\n";
         std::cout << "5. Return the size of the heap\n";
-        std::cout << "6. Exit\n";
+        std::cout << "6. Exit\n\n";
+        std::cout << "Your choice: ";
+
         std::cin >> choice;
     
         switch(choice) {
