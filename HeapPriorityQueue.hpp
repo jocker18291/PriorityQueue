@@ -15,6 +15,7 @@ public:
     std::pair<double, double> extract_max();
     double find_max() const;
     void modify_key(double e, double p);
+    std::pair<double, double> return_size() const;
 };
 
 #endif
