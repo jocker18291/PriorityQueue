@@ -12,17 +12,17 @@ void heapQueue::heapify(std::vector<std::pair<double, double>>& arr, int n, int 
 
     int left = 2 * i + 1;
 
-    int right = 2 * 1 + 2;
+    int right = 2 * i + 2;
 
-    if(arr[largest] < arr[left] && left < n) {
+    if(left < n && arr[largest].second < arr[left].second) {
         largest = left;
     }
 
-    if(arr[largest] < arr[right] && right < n) {
+    if(right < n && arr[largest].second < arr[right].second) {
         largest = right;
     }
 
-    if(arr[i] != arr[largest]) {
+    if(largest != i) {
         std::swap(arr[i], arr[largest]);
 
         heapify(arr, n, largest);
