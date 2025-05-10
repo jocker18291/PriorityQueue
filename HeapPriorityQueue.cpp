@@ -52,8 +52,8 @@ std::pair<double, double> heapQueue::extract_max() {
     return firstElem;
 }
 
-double heapQueue::find_max() const {
-    return arr[0].first;
+std::pair<double, double> heapQueue::find_max() const {
+    return arr[0];
 }
 
 void heapQueue::modify_key(double e, double p) {
