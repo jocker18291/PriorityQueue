@@ -53,3 +53,7 @@ std::pair<double, double> heapQueue::extract_max() {
     heapifyDown(arr.size(), 0);
     return firstElem;
 }
+
+double heapQueue::find_max() const {
+    return arr[0].first;
+}
