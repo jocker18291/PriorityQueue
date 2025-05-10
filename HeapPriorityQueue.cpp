@@ -59,9 +59,9 @@ double heapQueue::find_max() const {
 }
 
 void heapQueue::modify_key(double e, double p) {
-    int currentP = 0;
+    double currentP = 0;
     for(int i = 0; i < arr.size(); i++) {
-        if(arr[i].first = e) {
+        if(arr[i].first == e) {
             currentP = arr[i].second;
             arr[i].second = p;
             if(currentP > p) {
