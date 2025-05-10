@@ -13,6 +13,7 @@ public:
     void heapifyDown(int n, int i);
     void insert(double e, double p);
     std::pair<double, double> extract_max();
+    double find_max() const;
 };
 
 #endif
