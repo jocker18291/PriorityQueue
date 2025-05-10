@@ -48,4 +48,7 @@ void heapQueue::insert(double e, double p) {
 
 std::pair<double, double> heapQueue::extract_max() {
     std::pair<double, double> firstElem = arr[0];
+    std::swap(arr[0], arr[arr.size() - 1]);
+    arr.pop_back();
+    heapifyDown(arr.size() - 1, 0);
 }
