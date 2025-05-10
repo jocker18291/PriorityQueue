@@ -2,9 +2,7 @@
 #include <iostream>
 #include "HeapPriorityQueue.hpp"
 
-heapQueue::heapQueue(std::vector<std::pair<double, double>> array) {
-    arr = array;
-};
+heapQueue::heapQueue() {};
 
 void heapQueue::heapifyUp(int i) {
     if(i > 0) {
