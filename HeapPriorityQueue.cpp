@@ -70,6 +70,7 @@ void heapQueue::modify_key(double e, double p) {
             else if (currentP < p) {
                 heapifyUp(i);
             }
+            break;
         }
     }
     
