@@ -38,6 +38,7 @@ void heapMenu() {
 }
 
 int main() {
-
+    heapMenu();
+    
     return 0;
 }
