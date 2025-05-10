@@ -57,3 +57,20 @@ std::pair<double, double> heapQueue::extract_max() {
 double heapQueue::find_max() const {
     return arr[0].first;
 }
+
+void heapQueue::modify_key(double e, double p) {
+    int currentP = 0;
+    for(int i = 0; i < arr.size(); i++) {
+        if(arr[i].first = e) {
+            currentP = arr[i].second;
+            arr[i].second = p;
+            if(currentP > p) {
+                heapifyDown(arr.size(), i);
+            }
+            else if (currentP < p) {
+                heapifyUp(i);
+            }
+        }
+    }
+    
+}
