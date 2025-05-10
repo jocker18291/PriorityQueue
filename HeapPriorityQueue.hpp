@@ -9,7 +9,8 @@ private:
     std::vector<std::pair<double, double>> arr;
 public:
     heapQueue(std::vector<std::pair<double, double>> arr);
-    void heapifyUp( int i);
+    void heapifyUp(int i);
+    void heapifyDown(int n, int i);
     void insert(double e, double p);
     std::pair<double, double> extract_max();
 };
