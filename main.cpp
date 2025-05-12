@@ -192,6 +192,7 @@ int main()
 
     std::cout << "1. Use Heap-based Priority Queue\n";
     std::cout << "2. Use Array-based Priority Queue\n";
+    std::cout << "3. Test Insert on Both Queues\n";
     std::cout << "Choose implementation: ";
     std::cin >> choice;
 
@@ -202,6 +203,9 @@ int main()
         break;
     case 2:
         arrayMenu();
+        break;
+    case 3:
+        testQueueInsert();
         break;
     default:
         std::cout << "Unknown choice, try again\n";
