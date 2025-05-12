@@ -10,6 +10,7 @@ void arrayMenu()
     arrayQueue aq;
     double e = 0.0, p = 0.0;
     int choice = 0;
+    std::pair<double, double> max_Elem;
     do {
         std::cout << "\n --- Array Priority Queue ---\n\n";
         std::cout << "1. Insert an element (e, p)\n";
@@ -32,7 +33,7 @@ void arrayMenu()
         case 2:
             if (aq.return_size() > 0)
             {
-                std::pair<double, double> max_Elem = aq.extract_max();
+                max_Elem = aq.extract_max();
                 std::cout << "The biggest element: " << max_Elem.first << " with priority of " << max_Elem.second << " was deleted\n";
             }
             else
@@ -43,7 +44,6 @@ void arrayMenu()
         case 3:
             if (aq.return_size() > 0)
             {
-                std::pair<double, double> max_Elem = aq.find_max();
                 std::cout << "Element with the biggest priority: " << max_Elem.first << " with priority of " << max_Elem.second << std::endl;
             }
             else
@@ -72,6 +72,7 @@ void heapMenu() {
     heapQueue hq;
     double e = 0.0, p = 0.0;
     int choice = 0;
+    std::pair<double, double> max_Elem;
     do {
         std::cout << "\n --- Heap Priority Queue ---\n\n";
         std::cout << "1. Insert an element (e, q)\n";
@@ -83,34 +84,49 @@ void heapMenu() {
         std::cout << "Your choice: ";
 
         std::cin >> choice;
-    
-        switch(choice) {
-            case 1:
-                std::cout << "Enter an element and a priority: ";
-                std::cin >> e >> p;
-                hq.insert(e, p);
-                break;
-            case 2:
-                std::cout << "The biggest element: " << hq.extract_max().first << " with priority of " << hq.extract_max().second << " was deleted\n";
-                break;
-            case 3:
-                std::cout << "Element with the biggest priority: " << hq.find_max().first << " with priority of " << hq.find_max().second << std::endl;
-                break;
-            case 4:
-                std::cout << "Enter the element and a priority to change: ";
-                std::cin >> e >> p;
-                hq.modify_key(e, p);
-                break;
-            case 5:
-                std::cout << "The size of the heap: " << hq.return_size() << std::endl;
-                break;
-            case 6:
-                break;
-            default:
+
+        switch (choice) {
+        case 1:
+            std::cout << "Enter an element and a priority: ";
+            std::cin >> e >> p;
+            hq.insert(e, p);
+            break;
+        case 2:
+            if (hq.return_size() > 0)
+            {
+                max_Elem = hq.extract_max();
+                std::cout << "The biggest element: " << max_Elem.first << " with priority of " << max_Elem.second << " was deleted\n";
+            }
+            else
+            {
+                std::cout << "Error: The queue is empty. Cannot extract an element.\n";
+            }
+            break;
+        case 3:
+            if (hq.return_size() > 0)
+            {
+                std::cout << "Element with the biggest priority: " << max_Elem.first << " with priority of " << max_Elem.second << std::endl;
+            }
+            else
+            {
+                std::cout << "Error: The queue is empty. No element to find.\n";
+            }
+            break;
+        case 4:
+            std::cout << "Enter the element and a priority to change: ";
+            std::cin >> e >> p;
+            hq.modify_key(e, p);
+            break;
+        case 5:
+            std::cout << "The size of the heap: " << hq.return_size() << std::endl;
+            break;
+        case 6:
+            break;
+        default:
             std::cout << "Unknown choice, try again\n";
-                break;
+            break;
         }
-    } while(choice != 6);
+    } while (choice != 6);
 }
 
 int main()
@@ -122,7 +138,7 @@ int main()
     std::cout << "Choose implementation: ";
     std::cin >> choice;
 
-    switch (choice) 
+    switch (choice)
     {
     case 1:
         heapMenu();
@@ -130,7 +146,7 @@ int main()
     case 2:
         arrayMenu();
         break;
-    default: 
+    default:
         std::cout << "Unknown choice, try again\n";
         break;
     }
