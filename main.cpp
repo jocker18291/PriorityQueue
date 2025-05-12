@@ -130,17 +130,46 @@ void heapMenu() {
     } while (choice != 6);
 }
 
-std::vector<double> generateRandom(int n) {
-    std::vector<double> arr;
+std::vector<std::pair<double, double>> generateRandom(int n) {
+    std::vector<std::pair<double, double>> arr;
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> element(-100, 100);
+    std::uniform_real_distribution<> priority(-100, 100);
 
     for(int i = 0; i < n; i++) {
-        arr.push_back(element(gen));
+        arr.push_back({element(gen), priority(gen)});
     }
 
     return arr;
+}
+
+int TRIALS = 100;
+
+void testQueue() {
+    int n = 0;
+    std::string fileName;
+    heapQueue hq;
+    arrayQueue aq;
+
+    std::cout << "\n --- Testing Queues ---\n\n";
+    std::cout << "Enter the file name to save results: ";
+    std::cin >> fileName;
+
+    std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
+
+    for(int i = 0; i < 6; i++) {
+        for(int j = 0; j < TRIALS; j++) {
+            auto arr = generateRandom(size[i]);
+
+            for(auto element : arr) {
+                hq.insert(element.first, element.second);
+                aq.insert(element.first, element.second);
+            }
+
+            
+        }
+    }
 }
 
 int main()
