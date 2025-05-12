@@ -147,7 +147,6 @@ std::vector<std::pair<double, double>> generateRandom(int n) {
 int TRIALS = 100;
 
 void testQueueInsert() {
-    int n = 0;
     double totalHeap = 0.0, totalArray = 0.0;
     std::string fileName;
     heapQueue hq;
@@ -156,6 +155,9 @@ void testQueueInsert() {
     std::cout << "\n --- Testing Queues ---\n\n";
     std::cout << "Enter the file name to save results: ";
     std::cin >> fileName;
+    std::ofstream MyFile(fileName);
+
+    MyFile << "Size,HeapTime,ArrTime" << std::endl;
 
     std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
 
@@ -174,12 +176,14 @@ void testQueueInsert() {
             auto end = std::chrono::high_resolution_clock::now();
             totalHeap += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 
-            auto start = std::chrono::high_resolution_clock::now();
+            auto start2 = std::chrono::high_resolution_clock::now();
             aq.insert(relem[0].first, relem[0].second);
-            auto end = std::chrono::high_resolution_clock::now();
-            totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+            auto end2 = std::chrono::high_resolution_clock::now();
+            totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count();
         }
+        MyFile << size[i] << "," << totalHeap/TRIALS << "," << totalArray/TRIALS << std::endl;
     }
+    MyFile.close();
 }
 
 int main()
