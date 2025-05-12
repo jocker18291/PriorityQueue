@@ -146,8 +146,9 @@ std::vector<std::pair<double, double>> generateRandom(int n) {
 
 int TRIALS = 100;
 
-void testQueue() {
+void testQueueInsert() {
     int n = 0;
+    double totalHeap = 0.0, totalArray = 0.0;
     std::string fileName;
     heapQueue hq;
     arrayQueue aq;
@@ -161,13 +162,22 @@ void testQueue() {
     for(int i = 0; i < 6; i++) {
         for(int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
+            auto relem = generateRandom(1);
 
             for(auto element : arr) {
                 hq.insert(element.first, element.second);
                 aq.insert(element.first, element.second);
             }
 
-            
+            auto start = std::chrono::high_resolution_clock::now();
+            hq.insert(relem[0].first, relem[0].second);
+            auto end = std::chrono::high_resolution_clock::now();
+            totalHeap += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+
+            auto start = std::chrono::high_resolution_clock::now();
+            aq.insert(relem[0].first, relem[0].second);
+            auto end = std::chrono::high_resolution_clock::now();
+            totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
         }
     }
 }
