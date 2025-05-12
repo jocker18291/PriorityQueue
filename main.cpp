@@ -1,8 +1,72 @@
 #include "HeapPriorityQueue.hpp"
+#include "ArrayPriorityQueue.hpp"
 #include <iostream>
 #include <vector>
 #include <random>
 #include <chrono>
+
+void arrayMenu()
+{
+    arrayQueue aq;
+    double e = 0.0, p = 0.0;
+    int choice = 0;
+    do {
+        std::cout << "\n --- Array Priority Queue ---\n\n";
+        std::cout << "1. Insert an element (e, p)\n";
+        std::cout << "2. Extract the biggest element\n";
+        std::cout << "3. Find the element of the biggest priority\n";
+        std::cout << "4. Modify the priority of given element\n";
+        std::cout << "5. Return the size of the array queue\n";
+        std::cout << "6. Exit\n\n";
+        std::cout << "Your choice: ";
+
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            std::cout << "Enter an element and a priority: ";
+            std::cin >> e >> p;
+            aq.insert(e, p);
+            break;
+        case 2:
+            if (aq.return_size() > 0)
+            {
+                std::pair<double, double> max_Elem = aq.extract_max();
+                std::cout << "The biggest element: " << max_Elem.first << " with priority of " << max_Elem.second << " was deleted\n";
+            }
+            else
+            {
+                std::cout << "Error: The queue is empty. Cannot extract an element.\n";
+            }
+            break;
+        case 3:
+            if (aq.return_size() > 0)
+            {
+                std::pair<double, double> max_Elem = aq.find_max();
+                std::cout << "Element with the biggest priority: " << max_Elem.first << " with priority of " << max_Elem.second << std::endl;
+            }
+            else
+            {
+                std::cout << "Error: The queue is empty. No element to find.\n";
+            }
+            break;
+        case 4:
+            std::cout << "Enter the element and a priority to change: ";
+            std::cin >> e >> p;
+            aq.modify_key(e, p);
+            break;
+        case 5:
+            std::cout << "The size of the array queue: " << aq.return_size() << std::endl;
+            break;
+        case 6:
+            break;
+        default:
+            std::cout << "Unknown choice, try again\n";
+            break;
+        }
+    } while (choice != 6);
+}
 
 void heapMenu() {
     heapQueue hq;
@@ -49,8 +113,26 @@ void heapMenu() {
     } while(choice != 6);
 }
 
-int main() {
-    heapMenu();
+int main()
+{
+    int choice = 0;
 
+    std::cout << "1. Use Heap-based Priority Queue\n";
+    std::cout << "2. Use Array-based Priority Queue\n";
+    std::cout << "Choose implementation: ";
+    std::cin >> choice;
+
+    switch (choice) 
+    {
+    case 1:
+        heapMenu();
+        break;
+    case 2:
+        arrayMenu();
+        break;
+    default: 
+        std::cout << "Unknown choice, try again\n";
+        break;
+    }
     return 0;
 }
