@@ -359,6 +359,7 @@ int main()
     std::cout << "4. Test Extract_Max on Both Queues\n";
     std::cout << "5. Test Find_Max on Both Queues\n";
     std::cout << "6. Test Modify on Both Queues\n";
+    std::cout << "7. Test Return Size on Both Queues\n";
     std::cout << "Choose implementation: ";
     std::cin >> choice;
 
@@ -378,6 +379,12 @@ int main()
         break;
     case 5:
         testQueueFindMax();
+        break;
+    case 6:
+        testQueueModify();
+        break;
+    case 7:
+        testQueueSize();
         break;
     default:
         std::cout << "Unknown choice, try again\n";
