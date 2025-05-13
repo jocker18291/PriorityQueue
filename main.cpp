@@ -135,7 +135,7 @@ std::vector<std::pair<double, double>> generateRandom(int n) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> element(-100, 100);
-    std::uniform_real_distribution<> priority(-100, 100);
+    std::uniform_real_distribution<> priority((-1 * n * 5), (n * 5));
 
     for(int i = 0; i < n; i++) {
         arr.push_back({element(gen), priority(gen)});
