@@ -206,7 +206,6 @@ void testQueueExtract() {
         double totalHeap = 0.0, totalArray = 0.0;
         for(int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
-            auto relem = generateRandom(1);
 
             for(auto element : arr) {
                 hq.insert(element.first, element.second);
@@ -247,7 +246,6 @@ void testQueueFindMax() {
         double totalHeap = 0.0, totalArray = 0.0;
         for(int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
-            auto relem = generateRandom(1);
 
             for(auto element : arr) {
                 hq.insert(element.first, element.second);
@@ -269,6 +267,48 @@ void testQueueFindMax() {
     MyFile.close();
 }
 
+void testQueueModify() {
+    
+    std::string fileName;
+    heapQueue hq;
+    arrayQueue aq;
+
+    std::cout << "\n --- Testing Queues ---\n\n";
+    std::cout << "Enter the file name to save results: ";
+    std::cin >> fileName;
+    std::ofstream MyFile(fileName);
+
+    MyFile << "Size,HeapTime,ArrTime" << std::endl;
+
+    std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
+
+    for(int i = 0; i < 6; i++) {
+        double totalHeap = 0.0, totalArray = 0.0;
+        for(int j = 0; j < TRIALS; j++) {
+            auto arr = generateRandom(size[i]);
+            auto index = arr[rand() % arr.size()];
+            auto relem = generateRandom(1);
+
+            for(auto element : arr) {
+                hq.insert(element.first, element.second);
+                aq.insert(element.first, element.second);
+            }
+
+            auto start = std::chrono::high_resolution_clock::now();
+            hq.modify_key(index.first, relem[0].second);
+            auto end = std::chrono::high_resolution_clock::now();
+            totalHeap += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+
+            auto start2 = std::chrono::high_resolution_clock::now();
+            aq.modify_key(index.first, relem[0].second);
+            auto end2 = std::chrono::high_resolution_clock::now();
+            totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count();
+        }
+        MyFile << size[i] << "," << totalHeap/TRIALS << "," << totalArray/TRIALS << std::endl;
+    }
+    MyFile.close();
+}
+
 int main()
 {
     int choice = 0;
@@ -278,6 +318,7 @@ int main()
     std::cout << "3. Test Insert on Both Queues\n";
     std::cout << "4. Test Extract_Max on Both Queues\n";
     std::cout << "5. Test Find_Max on Both Queues\n";
+    std::cout << "6. Test Modify on Both Queues\n";
     std::cout << "Choose implementation: ";
     std::cin >> choice;
 
