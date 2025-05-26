@@ -1,16 +1,18 @@
 #ifndef ARRAYPRIORITYQUEUE_HPP
 #define ARRAYPRIORITYQUEUE_HPP
-
-#include <vector>
+#include <utility>
 
 class arrayQueue
 {
 private:
-    double element;
-    double priority;
-    std::vector<std::pair<double, double>> arr;
+    std::pair<double, double>* arr;
+    int size;
+    int capacity;
+    
 public:
     arrayQueue();
+    ~arrayQueue();
+    void resize();
     void insert(double e, double p);
     std::pair<double, double> extract_max();
     std::pair<double, double> find_max() const;
