@@ -6,11 +6,15 @@ class heapQueue {
 private:
     double element;
     double priority;
-    std::vector<std::pair<double, double>> arr;
+    std::pair<double, double> *arr;
+    int size;
+    int capacity;
 public:
     heapQueue();
+    ~heapQueue();
     void heapifyUp(int i);
-    void heapifyDown(int n, int i);
+    void heapifyDown(int i);
+    void resize();
     void insert(double e, double p);
     std::pair<double, double> extract_max();
     std::pair<double, double> find_max() const;
