@@ -1,5 +1,5 @@
-#include "HeapPriorityQueue.hpp"
-#include "ArrayPriorityQueue.hpp"
+#include "../include/HeapPriorityQueue.hpp"
+#include "../include/ArrayPriorityQueue.hpp"
 #include <iostream>
 #include <vector>
 #include <random>

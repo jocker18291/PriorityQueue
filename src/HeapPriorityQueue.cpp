@@ -1,6 +1,6 @@
 #include <utility>
 #include <iostream>
-#include "HeapPriorityQueue.hpp"
+#include "../include/HeapPriorityQueue.hpp"
 
 heapQueue::heapQueue() {
     capacity = 10;

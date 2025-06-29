@@ -1,4 +1,4 @@
-#include "ArrayPriorityQueue.hpp"
+#include "../include/ArrayPriorityQueue.hpp"
 #include <iostream>
 #include <utility>
 
