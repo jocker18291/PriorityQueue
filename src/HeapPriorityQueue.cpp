@@ -1,4 +1,4 @@
-#include <vector>
+#include <utility>
 #include <iostream>
 #include "HeapPriorityQueue.hpp"
 
@@ -9,13 +9,13 @@ heapQueue::heapQueue() {
 };
 
 void heapQueue::heapifyUp(int i) {
-    if(i > 0) {
+    if (i > 0) {
         int parent = (i - 1) / 2;
 
-        if(arr[parent].second < arr[i].second) {
-        std::swap(arr[i], arr[parent]);
+        if (arr[parent].second < arr[i].second) {
+            std::swap(arr[i], arr[parent]);
 
-        heapifyUp(parent);
+            heapifyUp(parent);
         }
     }
 }
@@ -27,15 +27,15 @@ void heapQueue::heapifyDown(int i) {
 
     int right = 2 * i + 2;
 
-    if(left < size && arr[largest].second < arr[left].second) {
+    if (left < size && arr[largest].second < arr[left].second) {
         largest = left;
     }
 
-    if(right < size && arr[largest].second < arr[right].second) {
+    if (right < size && arr[largest].second < arr[right].second) {
         largest = right;
     }
 
-    if(largest != i) {
+    if (largest != i) {
         std::swap(arr[i], arr[largest]);
 
         heapifyDown(largest);
@@ -43,10 +43,10 @@ void heapQueue::heapifyDown(int i) {
 }
 
 void heapQueue::resize() {
-    if(size == capacity) {
+    if (size == capacity) {
         std::pair<double, double>* NewArr = new std::pair<double, double>[capacity * 2];
         capacity *= 2;
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             NewArr[i] = arr[i];
         }
         delete[] arr;
@@ -55,8 +55,8 @@ void heapQueue::resize() {
 }
 
 void heapQueue::insert(double e, double p) {
-    if(size == capacity) resize();
-    arr[size] = {e, p};
+    if (size == capacity) resize();
+    arr[size] = { e, p };
     heapifyUp(size);
     size++;
 }
@@ -75,11 +75,11 @@ std::pair<double, double> heapQueue::find_max() const {
 
 void heapQueue::modify_key(double e, double p) {
     double currentP = 0;
-    for(int i = 0; i < size; i++) {
-        if(arr[i].first == e) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i].first == e) {
             currentP = arr[i].second;
             arr[i].second = p;
-            if(currentP > p) {
+            if (currentP > p) {
                 heapifyDown(i);
             }
             else if (currentP < p) {
@@ -88,7 +88,7 @@ void heapQueue::modify_key(double e, double p) {
             break;
         }
     }
-    
+
 }
 
 
