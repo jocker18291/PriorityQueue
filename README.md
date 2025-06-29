@@ -25,7 +25,7 @@ Both implementations support the following operations:
    Ensure you have a C++ compiler (such as `g++`):
 
    ```sh
-   g++ -std=c++11 main.cpp ArrayPriorityQueue.cpp HeapPriorityQueue.cpp -o PriorityQueue
+   g++  src/main.cpp src/ArrayPriorityQueue.cpp src/HeapPriorityQueue.cpp include/ArrayPriorityQueue.hpp include/HeapPriorityQueue.hpp -o PriorityQueue
    ```
 
 2. **Run the executable**  
