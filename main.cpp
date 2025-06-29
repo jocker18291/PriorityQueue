@@ -5,6 +5,7 @@
 #include <random>
 #include <chrono>
 #include <fstream>
+#include <utility>
 
 void arrayMenu()
 {
@@ -45,6 +46,7 @@ void arrayMenu()
         case 3:
             if (aq.return_size() > 0)
             {
+                max_Elem = aq.find_max();
                 std::cout << "Element with the biggest priority: " << max_Elem.first << " with priority of " << max_Elem.second << std::endl;
             }
             else
@@ -106,6 +108,7 @@ void heapMenu() {
         case 3:
             if (hq.return_size() > 0)
             {
+                max_Elem = hq.find_max();
                 std::cout << "Element with the biggest priority: " << max_Elem.first << " with priority of " << max_Elem.second << std::endl;
             }
             else
@@ -137,8 +140,8 @@ std::vector<std::pair<double, double>> generateRandom(int n) {
     std::uniform_real_distribution<> element(-100, 100);
     std::uniform_real_distribution<> priority((-1 * n * 5), (n * 5));
 
-    for(int i = 0; i < n; i++) {
-        arr.push_back({element(gen), priority(gen)});
+    for (int i = 0; i < n; i++) {
+        arr.push_back({ element(gen), priority(gen) });
     }
 
     return arr;
@@ -147,7 +150,7 @@ std::vector<std::pair<double, double>> generateRandom(int n) {
 int TRIALS = 100;
 
 void testQueueInsert() {
-    
+
     std::string fileName;
     heapQueue hq;
     arrayQueue aq;
@@ -159,15 +162,15 @@ void testQueueInsert() {
 
     MyFile << "Size,HeapTime,ArrTime" << std::endl;
 
-    std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
+    std::vector<int> size = { 1000, 10000, 50000, 100000, 500000, 1000000 };
 
-    for(int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++) {
         double totalHeap = 0.0, totalArray = 0.0;
-        for(int j = 0; j < TRIALS; j++) {
+        for (int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
             auto relem = generateRandom(1);
 
-            for(auto element : arr) {
+            for (auto element : arr) {
                 hq.insert(element.first, element.second);
                 aq.insert(element.first, element.second);
             }
@@ -182,13 +185,13 @@ void testQueueInsert() {
             auto end2 = std::chrono::high_resolution_clock::now();
             totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count();
         }
-        MyFile << size[i] << "," << totalHeap/TRIALS << "," << totalArray/TRIALS << std::endl;
+        MyFile << size[i] << "," << totalHeap / TRIALS << "," << totalArray / TRIALS << std::endl;
     }
     MyFile.close();
 }
 
 void testQueueExtract() {
-    
+
     std::string fileName;
     heapQueue hq;
     arrayQueue aq;
@@ -200,14 +203,14 @@ void testQueueExtract() {
 
     MyFile << "Size,HeapTime,ArrTime" << std::endl;
 
-    std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
+    std::vector<int> size = { 1000, 10000, 50000, 100000, 500000, 1000000 };
 
-    for(int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++) {
         double totalHeap = 0.0, totalArray = 0.0;
-        for(int j = 0; j < TRIALS; j++) {
+        for (int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
 
-            for(auto element : arr) {
+            for (auto element : arr) {
                 hq.insert(element.first, element.second);
                 aq.insert(element.first, element.second);
             }
@@ -222,13 +225,13 @@ void testQueueExtract() {
             auto end2 = std::chrono::high_resolution_clock::now();
             totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count();
         }
-        MyFile << size[i] << "," << totalHeap/TRIALS << "," << totalArray/TRIALS << std::endl;
+        MyFile << size[i] << "," << totalHeap / TRIALS << "," << totalArray / TRIALS << std::endl;
     }
     MyFile.close();
 }
 
 void testQueueFindMax() {
-    
+
     std::string fileName;
     heapQueue hq;
     arrayQueue aq;
@@ -240,14 +243,14 @@ void testQueueFindMax() {
 
     MyFile << "Size,HeapTime,ArrTime" << std::endl;
 
-    std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
+    std::vector<int> size = { 1000, 10000, 50000, 100000, 500000, 1000000 };
 
-    for(int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++) {
         double totalHeap = 0.0, totalArray = 0.0;
-        for(int j = 0; j < TRIALS; j++) {
+        for (int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
 
-            for(auto element : arr) {
+            for (auto element : arr) {
                 hq.insert(element.first, element.second);
                 aq.insert(element.first, element.second);
             }
@@ -262,13 +265,13 @@ void testQueueFindMax() {
             auto end2 = std::chrono::high_resolution_clock::now();
             totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count();
         }
-        MyFile << size[i] << "," << totalHeap/TRIALS << "," << totalArray/TRIALS << std::endl;
+        MyFile << size[i] << "," << totalHeap / TRIALS << "," << totalArray / TRIALS << std::endl;
     }
     MyFile.close();
 }
 
 void testQueueModify() {
-    
+
     std::string fileName;
     heapQueue hq;
     arrayQueue aq;
@@ -280,16 +283,16 @@ void testQueueModify() {
 
     MyFile << "Size,HeapTime,ArrTime" << std::endl;
 
-    std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
+    std::vector<int> size = { 1000, 10000, 50000, 100000, 500000, 1000000 };
 
-    for(int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++) {
         double totalHeap = 0.0, totalArray = 0.0;
-        for(int j = 0; j < TRIALS; j++) {
+        for (int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
             auto index = arr[rand() % arr.size()];
             auto relem = generateRandom(1);
 
-            for(auto element : arr) {
+            for (auto element : arr) {
                 hq.insert(element.first, element.second);
                 aq.insert(element.first, element.second);
             }
@@ -304,13 +307,13 @@ void testQueueModify() {
             auto end2 = std::chrono::high_resolution_clock::now();
             totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count();
         }
-        MyFile << size[i] << "," << totalHeap/TRIALS << "," << totalArray/TRIALS << std::endl;
+        MyFile << size[i] << "," << totalHeap / TRIALS << "," << totalArray / TRIALS << std::endl;
     }
     MyFile.close();
 }
 
 void testQueueSize() {
-    
+
     std::string fileName;
     heapQueue hq;
     arrayQueue aq;
@@ -322,14 +325,14 @@ void testQueueSize() {
 
     MyFile << "Size,HeapTime,ArrTime" << std::endl;
 
-    std::vector<int> size = {1000, 10000, 50000, 100000, 500000, 1000000};
+    std::vector<int> size = { 1000, 10000, 50000, 100000, 500000, 1000000 };
 
-    for(int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++) {
         double totalHeap = 0.0, totalArray = 0.0;
-        for(int j = 0; j < TRIALS; j++) {
+        for (int j = 0; j < TRIALS; j++) {
             auto arr = generateRandom(size[i]);
 
-            for(auto element : arr) {
+            for (auto element : arr) {
                 hq.insert(element.first, element.second);
                 aq.insert(element.first, element.second);
             }
@@ -344,7 +347,7 @@ void testQueueSize() {
             auto end2 = std::chrono::high_resolution_clock::now();
             totalArray += std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2).count();
         }
-        MyFile << size[i] << "," << totalHeap/TRIALS << "," << totalArray/TRIALS << std::endl;
+        MyFile << size[i] << "," << totalHeap / TRIALS << "," << totalArray / TRIALS << std::endl;
     }
     MyFile.close();
 }

@@ -1,12 +1,10 @@
 #ifndef HEAPPRIORITYQUEUE_HPP
 #define HEAPPRIORITYQUEUE_HPP
-#include <vector>
+#include <utility>
 
 class heapQueue {
 private:
-    double element;
-    double priority;
-    std::pair<double, double> *arr;
+    std::pair<double, double>* arr;
     int size;
     int capacity;
 public:
